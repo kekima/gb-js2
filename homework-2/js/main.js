@@ -5,6 +5,7 @@ class ProductList {
         this.allProducts = [];
         this._fetchProducts();
         this._render();
+        this.calcSum();
     }
 
     _fetchProducts() {
@@ -23,6 +24,15 @@ class ProductList {
             this.allProducts.push(productObject);
             block.insertAdjacentHTML('beforeend', productObject.render());
         }
+    }
+
+    calcSum() {
+        let fullPrice = 0;
+        for (let product of this.goods) {
+            fullPrice = fullPrice += product.price;
+        }
+        const block = document.querySelector(this.container);
+        block.insertAdjacentHTML('afterend', `Total price of all items: ${fullPrice} \u20bd`);
     }
 }
 
